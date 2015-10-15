@@ -1,5 +1,4 @@
 class Survey::Survey < ActiveRecord::Base
-
   self.table_name = "survey_surveys"
 
   acceptable_attributes :name, :description,
@@ -11,6 +10,8 @@ class Survey::Survey < ActiveRecord::Base
   # relations
   has_many :attempts,  :dependent => :destroy
   has_many :questions, :dependent => :destroy
+  has_many :media, :dependent => :destroy
+
   accepts_nested_attributes_for :questions,
     :reject_if => ->(q) { q[:text].blank? },
     :allow_destroy => true
